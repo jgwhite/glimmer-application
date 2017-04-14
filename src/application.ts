@@ -39,7 +39,8 @@ export interface AppRoot {
   id: number,
   component: string | ComponentDefinition<Component>,
   parent: Simple.Node,
-  nextSibling: Option<Simple.Node>
+  nextSibling: Option<Simple.Node>,
+  attributes: { string: any }
 }
 
 export default class Application implements Owner {
@@ -140,8 +141,8 @@ export default class Application implements Owner {
     this._renderResult = result.value;
   }
 
-  renderComponent(component: string | ComponentDefinition<Component>, parent: Simple.Node, nextSibling: Option<Simple.Node>): void {
-    this._roots.push({ id: this._rootsIndex++, component, parent, nextSibling });
+  renderComponent(component: string | ComponentDefinition<Component>, parent: Simple.Node, nextSibling: Option<Simple.Node>, attributes: any): void {
+    this._roots.push({ id: this._rootsIndex++, component, parent, nextSibling, attributes });
     this.scheduleRerender();
   }
 
